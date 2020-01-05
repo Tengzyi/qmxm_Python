@@ -6,7 +6,7 @@
 
   https://github.com/Tengzyi/qmxm_Python
   
-- [pythonanywhere URL/云服务器的域名提交 URL](tzyi.pythonanywhere.com)
+- [pythonanywhere URL](tzyi.pythonanywhere.com)
 
   tzyi.pythonanywhere.com
   
