@@ -1,0 +1,25 @@
+<html lang="zh">
+<head>
+    <link rel="stylesheet" href="static/css.css"/>
+</head>
+<body>
+<p>
+<h1>来看看发达国家的工业碳氧化物排放</h1>
+<h3>自1990年到2015的25年间，发达国家的排放量一直处于下降趋势，除了少数两个国家，几乎全部都是下降的。
+    说明了已经完成工业发展的发达国家早已开始注重环境的保护。将国家的工业产业都外包出去，减少本国的污染排放。
+    相比发展中国家，由于需要发展经济，提高国家工业产值，大肆开发。造成了严重的污染排放。</h3></p>
+<form method="POST" action="/hurun">
+    <select name="the_region_selected">
+        {% for item in the_select_region %}
+        <option value="{{ item }}">{{ item }}</option>
+        {% endfor %}
+    </select>
+    <p><input value='Do it!' type='SUBMIT'></p>
+</form>
+<form method="POST" action="/summary">
+    <p><input value='总结' type='SUBMIT'></p>
+</form>
+{{ the_plot_all|safe }}
+{{ the_res|safe }}
+</body>
+</html>>

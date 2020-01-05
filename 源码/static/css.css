@@ -1,0 +1,32 @@
+body {
+    /*background-color: #336666;*/
+    background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+    font-family: "Microsoft YaHei";
+    font-size: 13px;
+
+}
+
+
+h1 {
+    font-weight: 800;
+    text-decoration: underline;
+    font-size: 40px;
+    text-align: center;
+}
+
+h2 {
+    font-family: "STHeiti";
+    font-size: 30px;
+    text-align: center;
+}
+
+
+h3 {
+    font-family: "STHeiti";
+
+}
+
+h5 {
+    font-family: "STHeiti";
+
+}
