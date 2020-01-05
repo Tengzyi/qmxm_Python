@@ -8,16 +8,20 @@
 ### 从国家GDP与工业排放来探究空气污染与两者得相关性
 #### 网站内容通过使用Python完成数据处理、数据可视化，并部署于PythonAnywhere上展示。
 
-* .[项目代码GitHub_URL].(https://github.com/Tengzyi/qmxm_Python)
-* .[PythonAnywhere个人部署URL].(tzyi.pythonanywhere.com)
+[项目代码GitHub_URL](https://github.com/Tengzyi/qmxm_Python)
+[PythonAnywhere个人部署URL](tzyi.pythonanywhere.com)
 
 #### 数据传输描述：
 * 利用函数pd.read_csv，读取csv文件
 * 利用return render_template跳转页面
 * 前后端传输
+
   request.form["the_region_selected"]
+  
   {% for item in the_select_region %}
+  
   {{ the_plot_all|safe }}
+  
   {{ the_res|safe }}
 #### HTML档描述：
 * 布局与样式：
@@ -29,7 +33,7 @@
 * jinja2的运用：
 1. <title>{{ the_title }}</title>(来自空气污染导致的死亡率.html）
 2. {{ the_plot_all|safe }}（来自hurun.html）。
-* 链接css：<link rel="stylesheet" href="static/css.css"/>（来自空气污染导致的死亡率.html）。 
+* 链接css：*<link rel="stylesheet" href="static/css.css"/>*（来自空气污染导致的死亡率.html）。 
 
 #### Python档描述：
 * 调用函数
