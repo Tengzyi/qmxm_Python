@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request
 import plotly as py
 import cufflinks as cf
-from pyecharts.charts import Map, Timeline
+from pyecharts.charts import Map, Timeline,Scatter
 from pyecharts import options as opts
 import pandas as pd
+import plotly.graph_objs as go
 
 app = Flask(__name__)
 
@@ -35,6 +36,120 @@ def timeline_map() -> Timeline:
 
 
 timeline_map().render()
+
+df = pd.read_csv("number-of-deaths.csv")
+df.head()
+df.index
+df.columns
+dfc = df.set_index("The cause of death")
+dfc.head()
+dfc.index
+dfc.columns
+[int(x) for x in dfc.columns]
+dfc.loc["空气污染", :]
+dfc.loc["空气污染", :].name
+dfc.loc["空气污染", :].values
+dfc.loc["空气污染", :].index
+
+kqwr = Scatter(
+    x=[int(x) for x in dfc.columns],
+    y=dfc.loc["空气污染", :].values
+)
+
+py.offline.iplot([kqwr], filename="output_Afghanistan.html")
+
+# ## 室外空气污染死亡人数呈飞速上升趋势
+
+swkqwr = Scatter(
+    x=[int(x) for x in dfc.columns],
+    y=dfc.loc["室外空气污染", :].values
+)
+
+py.offline.iplot([swkqwr], filename="output_Angola.html")
+
+# ## 室内空气的污染死亡人数在下降
+
+snkqwr = Scatter(
+    x=[int(x) for x in dfc.columns],
+    y=dfc.loc["室内空气污染", :].values
+)
+
+py.offline.iplot([snkqwr], filename="output_Angola.html")
+
+kqwr = Scatter(
+    x=[int(x) for x in dfc.columns],
+    y=dfc.loc["空气污染", :].values,
+    name="空气污染"
+)
+
+swkqwr = Scatter(
+    x=[int(x) for x in dfc.columns],
+    y=dfc.loc["室外空气污染", :].values,
+    name="室外空气污染"
+)
+
+snkqwr = Scatter(
+    x=[int(x) for x in dfc.columns],
+    y=dfc.loc["室内空气污染", :].values,
+    name="室内空气污染"
+)
+
+py.offline.iplot([kqwr, swkqwr, snkqwr], filename="空气污染对比.html")
+
+dfe = pd.read_csv("number-of-deaths.csv", index_col=0)
+dfe.head()
+
+dfe.columns = [int(x) for x in dfe.columns]
+dfe.index = ['kqwr', 'swkqwr', 'snkqwr']
+dfe.head()
+
+dfe.loc["kqwr", :]
+
+kqwr = go.Scatter(
+    x=[pd.to_datetime('01/01/{y}'.format(y=x), format="%m/%d/%Y") for x in dfe.columns.values],
+    y=dfe.loc["kqwr", :].values,
+    name="空气污染"
+)
+
+swkqwr = go.Scatter(
+    x=[pd.to_datetime('01/01/{y}'.format(y=x), format="%m/%d/%Y") for x in dfe.columns.values],
+    y=dfe.loc["swkqwr", :].values,
+    name="室外空气污染"
+)
+
+snkqwr = go.Scatter(
+    x=[pd.to_datetime('01/01/{y}'.format(y=x), format="%m/%d/%Y") for x in dfe.columns.values],
+    y=dfe.loc["snkqwr", :].values,
+    name="室内空气污染"
+)
+
+layout = dict(xaxis=dict(rangeselector=dict(buttons=list([
+    dict(count=3,
+         label="3年",
+         step="year",
+         stepmode="backward"),
+    dict(count=5,
+         label="5年",
+         step="year",
+         stepmode="backward"),
+    dict(count=10,
+         label="10年",
+         step="year",
+         stepmode="backward"),
+    dict(count=20,
+         label="20年",
+         step="year",
+         stepmode="backward"),
+    dict(step="all")
+])),
+    rangeslider=dict(bgcolor="#70EC57"),
+    title='年份'
+),
+    yaxis=dict(title='世界死亡人数'),
+    title="各类空气污染死亡人数对比"
+)
+
+abc = dict(data=[kqwr, swkqwr, snkqwr], layout=layout)
 
 
 @app.route('/')
