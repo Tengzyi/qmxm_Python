@@ -9,8 +9,9 @@
 #### 网站内容通过使用Python完成数据处理、数据可视化，并部署于PythonAnywhere上展示。
 
 [项目代码GitHub_URL](https://github.com/Tengzyi/qmxm_Python)
-[PythonAnywhere个人部署URL](tzyi.pythonanywhere.com)
 
+[PythonAnywhere个人部署URL](tzyi.pythonanywhere.com)
+tzyi.pythonanywhere.com（链接可能有问题）
 #### 数据传输描述：
 * 利用函数pd.read_csv，读取csv文件
 * 利用return render_template跳转页面
