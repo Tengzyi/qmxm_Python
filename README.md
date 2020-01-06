@@ -46,3 +46,88 @@ tzyi.pythonanywhere.com（链接可能有问题）
 #### Web APP动作档描述：
 * 下拉框：在hurun.html文件中，我们设置了发达国家的工业碳氧化物排放下拉框选择，通过点击“Do it”提交，网页即呈现对应国家的排放数据图表：
 * 下一页按钮： 在html文件中，我们的故事是通过几个方面阐述的，一个表现为一个界面，通过点击下一页按钮即可跳转至下一个分析。
+
+---
+# 包含得分点
+在调用函数的基础上，读取csv数据文件，通过POST方法实现跳转至前端页面，即html返回的具体值。部分代码如下：
+```
+df1 = pd.read_csv("Industrial_emission_index.csv", encoding='utf-8')
+```
+
+```
+@app.route('/')
+def bing_death():
+    return render_template('2017年死亡因素下的死亡人数比例对比.html',
+                           the_title='2017年死亡因素下的死亡人数比例对比')
+```
+
+* 含有合适的推导式：
+```
+kqwr = Scatter(
+    x=[int(x) for x in dfc.columns],
+    y=dfc.loc["空气污染", :].values
+)
+```
+* 含有数据交互（举其中一个例子）：
+```
+return render_template('hurun.html',
+                           the_plot_all=plot_all,
+                           the_res=data_str,
+                           the_select_region=regions_available,
+)
+```
+* 含有合适的数据结构嵌套：
+```
+layout = dict(xaxis=dict(rangeselector=dict(buttons=list([
+    dict(count=3,
+         label="3年",
+         step="year",
+         stepmode="backward"),
+    dict(count=5,
+         label="5年",
+         step="year",
+         stepmode="backward"),
+    dict(count=10,
+         label="10年",
+         step="year",
+         stepmode="backward"),
+    dict(count=20,
+         label="20年",
+         step="year",
+         stepmode="backward"),
+    dict(step="all")
+])),
+    rangeslider=dict(bgcolor="#70EC57"),
+    title='年份'
+),
+    yaxis=dict(title='世界死亡人数'),
+    title="各类空气污染死亡人数对比"
+)
+```
+* 含有合适的列表循环：
+```
+def timeline_map() -> Timeline:
+    tl = Timeline()
+    for i in range(2007, 2017):
+        map0 = (
+            Map()
+                .add(
+                "", list(zip(list(df2.Country), list(df2["{}年".format(i)]))), "world", is_map_symbol_show=False
+            )
+                .set_series_opts(label_opts=opts.LabelOpts(is_show=False))
+                .set_global_opts(
+                title_opts=opts.TitleOpts(title="2007年-2017年各地区GDP对比".format(i), subtitle="",
+                                          subtitle_textstyle_opts=opts.TextStyleOpts(color="black", font_size=16,
+                                                                                     font_style="italic")),
+                visualmap_opts=opts.VisualMapOpts(max_=21972347748529, min_=20439158.42),
+
+            )
+        )
+        tl.add(map0, "{}年".format(i))
+    return tl
+```
+* 导入pyecharts类库导入图表实现交互：
+`from pyecharts import options as opts`
+* 定义一个timeline_map函数，符合 PEP8标准：
+`def timeline_map()`
+---
