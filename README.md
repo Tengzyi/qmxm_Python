@@ -4,10 +4,9 @@
 
 ### 项目过程：利用python爬取数据，收集故事所需信息—>运用flask框架实现Python和HTML图表前后端各项交互，在web页面展现数据图表和并描述故事—>实现pythonanywhere部署及github上传
 
-## 故事背景
 ### 从国家GDP与工业排放来探究空气污染与两者得相关性
 #### 网站内容通过使用Python完成数据处理、数据可视化，并部署于PythonAnywhere上展示。
-
+# 网站一共含有为9个页面
 [项目代码GitHub_URL](https://github.com/Tengzyi/qmxm_Python)
 
 [PythonAnywhere个人部署URL](tzyi.pythonanywhere.com)
